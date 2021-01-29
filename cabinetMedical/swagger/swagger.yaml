@@ -1,0 +1,636 @@
+openapi: 3.0.0
+info:
+  title: 'DoctoLib management'
+  description: 'DoctoLib management'
+  version: V1
+paths:
+  /adresses:
+    get:
+      tags:
+        - Adresse
+      summary: 'Returns a list of AdresseDTO'
+      description: 'Returns a list of AdresseDTO'
+      operationId: 'App\Controller\AdresseRestController::searchAll'
+      responses:
+        '200':
+          description: 'Successfull operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdresseDTO'
+        '404':
+          description: 'If no AdresseDTO found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdresseDTO'
+        '500':
+          description: 'Internal server Error. Please contact us'
+    post:
+      tags:
+        - Adresse
+      summary: 'Create AdresseDTO'
+      description: 'This can only be done by the logged in user'
+      operationId: 'App\Controller\AdresseRestController::create'
+      requestBody:
+        description: 'AdresseDTO JSON Object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdresseDTO'
+      responses:
+        '405':
+          description: 'Invalid input'
+        '201':
+          description: 'Adresse inserted successfully'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdresseDTO'
+  '/adresses/{idAdresse}':
+    put:
+      tags:
+        - Adresse
+      summary: 'Updated Adresse'
+      description: 'This can only be done by the logged in Adresse.'
+      operationId: 'App\Controller\AdresseRestController::update'
+      parameters:
+        -
+          name: idAdresse
+          in: path
+          description: 'id that need to be updated'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Updated user object'
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdresseDTO'
+      responses:
+        '400':
+          description: 'Invalid Adresse supplied'
+        '404':
+          description: 'Adresse not found'
+    delete:
+      tags:
+        - Adresse
+      summary: 'Delete purchase order by ID'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: 'App\Controller\AdresseRestController::remove'
+      parameters:
+        -
+          name: idAdresse
+          in: path
+          description: 'ID of the order that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Order not found'
+  '/adresses/{id}':
+    get:
+      tags:
+        - Adresse
+      summary: 'search one Adresse'
+      operationId: 'App\Controller\AdresseRestController::searchById'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Adresse trouvé'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdresseDTO'
+          links:
+            AdresseDTO:
+              $ref: '#/components/schemas/AdresseDTO'
+  /patients:
+    get:
+      tags:
+        - Patient
+      summary: 'Returns a list of PatientDTO'
+      description: 'Returns a list of PatientDTO'
+      operationId: 'App\Controller\PatientRestController::searchAll'
+      responses:
+        '200':
+          description: 'Successfull operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDTO'
+        '404':
+          description: 'If no PatientDTO found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDTO'
+    post:
+      tags:
+        - Patient
+      summary: 'Create Patient'
+      description: 'This can only be done by the logged in patient'
+      operationId: 'App\Controller\PatientRestController::create'
+      requestBody:
+        description: 'PatientDTO JSON Object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientDTO'
+      responses:
+        '405':
+          description: 'Invalid input'
+        '201':
+          description: 'Patient inserted successfully'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDTO'
+  '/patients/{id}':
+    get:
+      tags:
+        - Patient
+      summary: 'Search one patient'
+      operationId: searchById
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Patient trouvé'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDTO'
+          links:
+            PatientDTO:
+              $ref: '#/components/schemas/PatientDTO'
+    put:
+      tags:
+        - Patient
+      summary: 'Updated patient'
+      description: 'This can only be done by the logged in patient.'
+      operationId: update
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id that need to be updated'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Updated user object'
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatientDTO'
+      responses:
+        '400':
+          description: 'Invalid patient supplied'
+        '404':
+          description: 'Patient not found'
+    delete:
+      tags:
+        - Patient
+      summary: 'Delete patient'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: remove
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of the order that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Order not found'
+  /praticiens:
+    get:
+      tags:
+        - Praticien
+      summary: 'Returns a list of PraticienDTO'
+      description: 'Returns a list of PraticienDTO'
+      operationId: 'App\Controller\PraticienRestController::searchAll'
+      parameters:
+        -
+          name: ville
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successfull operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PraticienDTO'
+        '404':
+          description: 'If no PraticienDTO found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PraticienDTO'
+        '500':
+          description: 'Internal server Error. Please contact us'
+    post:
+      tags:
+        - Praticien
+      summary: 'Create PraticienDTO'
+      description: 'This can only be done by the logged in user'
+      operationId: 'App\Controller\PraticienRestController::create'
+      requestBody:
+        description: 'PraticienDTO JSON Object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PraticienDTO'
+      responses:
+        '405':
+          description: 'Invalid input'
+        '201':
+          description: 'Praticien inserted successfully'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PraticienDTO'
+  '/praticiens/{idPraticien}':
+    put:
+      tags:
+        - Praticien
+      summary: 'Updated praticien'
+      description: 'This can only be done by the logged in praticien.'
+      operationId: 'App\Controller\PraticienRestController::update'
+      parameters:
+        -
+          name: idPraticien
+          in: path
+          description: 'id that need to be updated'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Updated user object'
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PraticienDTO'
+      responses:
+        '400':
+          description: 'Invalid praticien supplied'
+        '404':
+          description: 'Praticien not found'
+    delete:
+      tags:
+        - Praticien
+      summary: 'Delete purchase order by ID'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: 'App\Controller\PraticienRestController::remove'
+      parameters:
+        -
+          name: idPraticien
+          in: path
+          description: 'ID of the order that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Order not found'
+  '/praticiens/{id}':
+    get:
+      tags:
+        - Praticien
+      summary: 'search one praticien'
+      operationId: 'App\Controller\PraticienRestController::searchById'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Praticien trouvé'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PraticienDTO'
+          links:
+            PraticienDTO:
+              $ref: '#/components/schemas/PraticienDTO'
+  /rendezVous:
+    get:
+      tags:
+        - RendezVous
+      summary: 'Returns a list of RendezVousDTO'
+      description: 'Returns a list of RendezVousDTO'
+      operationId: 'App\Controller\RendezVousRestController::searchAll'
+      responses:
+        '200':
+          description: 'Successfull operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RendezVousDTO'
+        '404':
+          description: 'If no RendezVousDTO found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RendezVousDTO'
+        '500':
+          description: 'Internal server Error. Please contact us'
+    post:
+      tags:
+        - RendezVous
+      summary: 'Create RendezVousDTO'
+      description: 'This can only be done by the logged in user'
+      operationId: 'App\Controller\RendezVousRestController::create'
+      requestBody:
+        description: 'RendezVousDTO JSON Object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RendezVousDTO'
+      responses:
+        '405':
+          description: 'Invalid input'
+        '201':
+          description: 'RendezVous inserted successfully'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RendezVousDTO'
+  '/rendezVous/{idRendezVous}':
+    get:
+      tags:
+        - RendezVous
+      summary: 'search one RendezVous'
+      operationId: 'App\Controller\RendezVousRestController::searchById'
+      parameters:
+        -
+          name: idRendezVous
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'RendezVous trouvé'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RendezVousDTO'
+          links:
+            RendezVousDTO:
+              $ref: '#/components/schemas/RendezVousDTO'
+    put:
+      tags:
+        - RendezVous
+      summary: 'Updated RendezVous'
+      description: 'This can only be done by the logged in RendezVous.'
+      operationId: 'App\Controller\RendezVousRestController::update'
+      parameters:
+        -
+          name: idRendezVous
+          in: path
+          description: 'id that need to be updated'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Updated user object'
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RendezVousDTO'
+      responses:
+        '400':
+          description: 'Invalid RendezVous supplied'
+        '404':
+          description: 'RendezVous not found'
+    delete:
+      tags:
+        - RendezVous
+      summary: 'Delete purchase order by ID'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: 'App\Controller\RendezVousRestController::remove'
+      parameters:
+        -
+          name: idRendezVous
+          in: path
+          description: 'ID of the order that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Order not found'
+  /suivres:
+    get:
+      tags:
+        - Suivre
+      summary: 'Returns a list of SuivreDTO'
+      description: 'Returns a list of SuivreDTO'
+      operationId: 'App\Controller\SuivreRestController::searchAll'
+      responses:
+        '200':
+          description: 'Successfull operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuivreDTO'
+        '404':
+          description: 'If no SuivreDTO found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuivreDTO'
+        '500':
+          description: 'Internal server Error. Please contact us'
+    post:
+      tags:
+        - Suivre
+      summary: 'Create SuivreDTO'
+      description: 'This can only be done by the logged in user'
+      operationId: 'App\Controller\SuivreRestController::create'
+      requestBody:
+        description: 'SuivreDTO JSON Object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuivreDTO'
+      responses:
+        '405':
+          description: 'Invalid input'
+        '201':
+          description: 'Suivre inserted successfully'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuivreDTO'
+  '/suivres/{idSuivre}':
+    put:
+      tags:
+        - Suivre
+      summary: 'Updated Suivre'
+      description: 'This can only be done by the logged in Suivre.'
+      operationId: 'App\Controller\SuivreRestController::update'
+      parameters:
+        -
+          name: idSuivre
+          in: path
+          description: 'id that need to be updated'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Updated user object'
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuivreDTO'
+      responses:
+        '400':
+          description: 'Invalid Suivre supplied'
+        '404':
+          description: 'Suivre not found'
+    delete:
+      tags:
+        - Suivre
+      summary: 'Delete purchase order by ID'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: 'App\Controller\SuivreRestController::remove'
+      parameters:
+        -
+          name: idSuivre
+          in: path
+          description: 'ID of the order that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Order not found'
+components:
+  schemas:
+    AdresseDTO:
+      properties:
+        id:
+          type: integer
+        libelleVoie:
+          type: string
+        ville:
+          type: string
+        pays:
+          type: string
+      type: object
+    PatientDTO:
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateInscription:
+          type: string
+        email:
+          type: string
+        telephone:
+          type: integer
+        password:
+          type: string
+        dateNaissance:
+          type: string
+      type: object
+    PraticienDTO:
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateInscription:
+          type: string
+          format: datetime
+        email:
+          type: string
+        telephone:
+          type: integer
+        password:
+          type: string
+        specialite:
+          type: string
+        adresse:
+          type: object
+      type: object
+    RendezVousDTO:
+      properties:
+        id:
+          type: integer
+        dateHeure:
+          type: string
+          format: datetime
+        patient:
+          type: object
+        praticien:
+          type: object
+      type: object
+    SuivreDTO:
+      properties:
+        id:
+          type: integer
+        patient:
+          type: object
+        praticien:
+          type: object
+      type: object
+    UserDTO: {  }
