@@ -11,37 +11,44 @@ class AdresseDTO
     /**
      * @OA\Property(type="integer")
      *
-     * @var int
+     * @var int|null
      */
     private $id;
 
     /**
      * @OA\Property(type="string")
      *
-     * @var string
+     * @var string|null
      */
     private $denomination;
 
     /**
      * @OA\Property(type="string")
      *
-     * @var string
+     * @var string|null
      */
     private $libelleVoie;
 
     /**
      * @OA\Property(type="string")
      *
-     * @var string
+     * @var string|null
      */
     private $ville;
 
     /**
      * @OA\Property(type="string")
      *
-     * @var string
+     * @var string|null
      */
     private $pays;
+
+    /**
+     * @OA\Property(type="string")
+     *
+     * @var string|null
+     */
+    private $codePostal;
 
     /**
      * Get the value of id
@@ -129,6 +136,7 @@ class AdresseDTO
         $this->id .
         $this->libelleVoie .
         $this->ville .
+        $this->codePostal .
         $this->pays;
     }
 
@@ -137,7 +145,7 @@ class AdresseDTO
      *
      * @return  string
      */ 
-    public function getDenomination():string
+    public function getDenomination():?string
     {
         return $this->denomination;
     }
@@ -149,9 +157,33 @@ class AdresseDTO
      *
      * @return  self
      */ 
-    public function setDenomination(string $denomination)
+    public function setDenomination(?string $denomination)
     {
         $this->denomination = $denomination;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of codePostal
+     *
+     * @return  string|null
+     */ 
+    public function getCodePostal():?string
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set the value of codePostal
+     *
+     * @param  string|null  $codePostal
+     *
+     * @return  self
+     */ 
+    public function setCodePostal(?string $codePostal):self
+    {
+        $this->codePostal = $codePostal;
 
         return $this;
     }

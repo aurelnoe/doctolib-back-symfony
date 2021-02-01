@@ -13,6 +13,7 @@ class AdresseMapper
         $adresse->setlibelleVoie($adresseDto->getlibelleVoie());
         $adresse->setVille($adresseDto->getVille());
         $adresse->setPays($adresseDto->getPays());
+        $adresse->setCodePostal($adresseDto->getCodePostal());
         return $adresse;
     }
 
@@ -23,6 +24,7 @@ class AdresseMapper
         $adresseDto->setlibelleVoie($adresse->getlibelleVoie());
         $adresseDto->setVille($adresse->getVille());
         $adresseDto->setPays($adresse->getPays());
+        $adresseDto->setCodePostal($adresse->getCodePostal());
         return $adresseDto;
     }
 }

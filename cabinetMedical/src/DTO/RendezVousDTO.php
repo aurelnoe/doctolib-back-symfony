@@ -25,7 +25,7 @@ class RendezVousDTO
      *      format="datetime"
      * )
      *
-     * @var \DateTimeInterface
+     * @var string
      */
     private $dateHeure;
 
@@ -66,7 +66,7 @@ class RendezVousDTO
     /**
      * Get the value of dateHeure
      */ 
-    public function getDateHeure():?\DateTimeInterface
+    public function getDateHeure():?string
     {
         return $this->dateHeure;
     }
@@ -76,7 +76,7 @@ class RendezVousDTO
      *
      * @return  self
      */ 
-    public function setDateHeure(?\DateTimeInterface $dateHeure):self
+    public function setDateHeure(?string $dateHeure):self
     {
         $this->dateHeure = $dateHeure;
 

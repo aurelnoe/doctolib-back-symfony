@@ -40,6 +40,11 @@ class Adresse
     private $pays;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $codePostal;
+
+    /**
      * @ORM\OneToMany(targetEntity=Praticien::class, mappedBy="adresse")
      */
     private $praticien;
@@ -155,6 +160,26 @@ class Adresse
     public function setDenomination(?string $denomination):self
     {
         $this->denomination = $denomination;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of codePostal
+     */ 
+    public function getCodePostal():?string
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set the value of codePostal
+     *
+     * @return  self
+     */ 
+    public function setCodePostal(?string $codePostal):self
+    {
+        $this->codePostal = $codePostal;
 
         return $this;
     }

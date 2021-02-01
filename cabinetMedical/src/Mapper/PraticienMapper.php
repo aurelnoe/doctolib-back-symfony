@@ -25,7 +25,7 @@ class PraticienMapper
         $praticien->setId($praticienDto->getId());
         $praticien->setNom($praticienDto->getNom());
         $praticien->setPrenom($praticienDto->getPrenom());
-        $praticien->setDateInscription($praticienDto->getDateInscription());
+        $praticien->setDateInscription(new \DateTime($praticienDto->getDateInscription()));
         $praticien->setEmail($praticienDto->getEmail());
         $praticien->setTelephone($praticienDto->getTelephone());
         $praticien->setPassword($hash);
@@ -40,7 +40,7 @@ class PraticienMapper
         $praticienDto->setId($praticien->getId());
         $praticienDto->setNom($praticien->getNom());
         $praticienDto->setPrenom($praticien->getPrenom());
-        $praticienDto->setDateInscription($praticien->getDateInscription());
+        $praticienDto->setDateInscription($praticien->getDateInscription()->format('Y-m-d'));
         $praticienDto->setEmail($praticien->getEmail());
         $praticienDto->setTelephone($praticien->getTelephone());
         // $praticienDto->setPassword($praticien->getPassword()); PAS DE MDP DANS DAO !!

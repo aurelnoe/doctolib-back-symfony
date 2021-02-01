@@ -38,7 +38,7 @@ class PraticienDTO
      *      type="string",
      *      format="datetime")
      *
-     * @var \DateTimeInterface
+     * @var string
      */
     private $dateInscription;
 
@@ -141,7 +141,7 @@ class PraticienDTO
     /**
      * Get the value of dateInscription
      */ 
-    public function getDateInscription():?\DateTimeInterface
+    public function getDateInscription():?string
     {
         return $this->dateInscription;
     }
@@ -151,7 +151,7 @@ class PraticienDTO
      *
      * @return  self
      */ 
-    public function setDateInscription(?\DateTimeInterface $dateInscription):self
+    public function setDateInscription(?string $dateInscription):self
     {
         $this->dateInscription = $dateInscription;
 

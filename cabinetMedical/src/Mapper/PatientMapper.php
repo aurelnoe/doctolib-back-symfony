@@ -22,11 +22,11 @@ class PatientMapper {
         $patient->setId($patientDto->getId());
         $patient->setNom($patientDto->getNom());
         $patient->setPrenom($patientDto->getPrenom());
-        $patient->setDateInscription($patientDto->getDateInscription());
+        $patient->setDateInscription(new \DateTime($patientDto->getDateInscription()));
         $patient->setEmail($patientDto->getEmail());
         $patient->setTelephone($patientDto->getTelephone());
         $patient->setPassword($hash);
-        $patient->setDateNaissance($patientDto->getDateNaissance());
+        $patient->setDateNaissance(new \DateTime($patientDto->getDateNaissance()));
         return $patient;
     }
 
@@ -36,11 +36,11 @@ class PatientMapper {
         $patientDto->setId($patient->getId());
         $patientDto->setNom($patient->getNom());
         $patientDto->setPrenom($patient->getPrenom());
-        $patientDto->setDateInscription($patient->getDateInscription());
+        $patientDto->setDateInscription($patient->getDateInscription()->format('Y-m-d'));
         $patientDto->setEmail($patient->getEmail());
         $patientDto->setTelephone($patient->getTelephone());
         //$patientDto->setPassword($patient->getPassword());
-        $patientDto->setDateNaissance($patient->getDateNaissance());
+        $patientDto->setDateNaissance($patient->getDateNaissance()->format('Y-m-d'));
         return $patientDto;
     }
 }

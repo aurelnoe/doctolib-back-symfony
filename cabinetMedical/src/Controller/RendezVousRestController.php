@@ -221,4 +221,78 @@ class RendezVousRestController extends AbstractFOSRestController
             return View::create([], Response::HTTP_NOT_FOUND, ["Content-type" => "application/json"]);
         }
     }
+
+    /**
+     * @OA\Get(
+     *      path="/rendezVous/patient/{idPatient}",
+     *      tags={"RendezVous"},
+     *      summary="search one RendezVous",
+     *      @OA\Parameter(
+     *          name="idPatient",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response="200",
+     *          description="RendezVous trouvé",
+     *          @OA\JsonContent(ref="#/components/schemas/RendezVousDTO"),
+     *          @OA\Link(link="RendezVousDTO", ref="#/components/schemas/RendezVousDTO")
+     *      )
+     * )
+     * 
+     * @Get(RendezVousRestController::URI_RENDEZVOUS_INSTANCE)
+     *
+     * @return void
+     */
+    public function searchRdvByIdPatient(int $idPatient) {
+        try {
+            $rendezVousDto = $this->rendezVousService->searchRdvByIdPatient($idPatient);
+        }catch (RendezVousServiceException $e){
+            return View::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR, ["Content-type" => "application/json"]);
+        }
+ 
+        if($rendezVousDto){
+            return View::create($rendezVousDto, Response::HTTP_OK, ["Content-type" => "application/json"]);
+        } else {
+            return View::create([], Response::HTTP_NOT_FOUND, ["Content-type" => "application/json"]);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/rendezVous/praticien/{idPraticien}",
+     *      tags={"RendezVous"},
+     *      summary="search one RendezVous",
+     *      @OA\Parameter(
+     *          name="idPraticien",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response="200",
+     *          description="RendezVous trouvé",
+     *          @OA\JsonContent(ref="#/components/schemas/RendezVousDTO"),
+     *          @OA\Link(link="RendezVousDTO", ref="#/components/schemas/RendezVousDTO")
+     *      )
+     * )
+     * 
+     * @Get(RendezVousRestController::URI_RENDEZVOUS_INSTANCE)
+     *
+     * @return void
+     */
+    public function searchRdvByIdPraticien(int $idPraticien) {
+        try {
+            $rendezVousDto = $this->rendezVousService->searchRdvByIdPraticien($idPraticien);
+        }catch (RendezVousServiceException $e){
+            return View::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR, ["Content-type" => "application/json"]);
+        }
+ 
+        if($rendezVousDto){
+            return View::create($rendezVousDto, Response::HTTP_OK, ["Content-type" => "application/json"]);
+        } else {
+            return View::create([], Response::HTTP_NOT_FOUND, ["Content-type" => "application/json"]);
+        }
+    }
 }

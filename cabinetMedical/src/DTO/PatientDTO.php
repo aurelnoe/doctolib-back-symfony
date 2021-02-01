@@ -32,9 +32,11 @@ class PatientDTO
     private $prenom;
 
     /**
-     * @OA\Property(type="string")
+     * @OA\Property(
+     *      type="string",
+     *      format="datetime")
      *
-     * @var \DateTimeInterface
+     * @var string
      */
     private $dateInscription;
 
@@ -60,9 +62,11 @@ class PatientDTO
     private $password;
 
     /**
-     * @OA\Property(type="string")
+     * @OA\Property(
+     *      type="string",
+     *      format="datetime")
      *
-     * @var \DateTimeInterface
+     * @var string
      */
     private $dateNaissance;
 
@@ -129,7 +133,7 @@ class PatientDTO
     /**
      * Get the value of dateInscription
      */ 
-    public function getDateInscription():?\DateTimeInterface
+    public function getDateInscription():?string
     {
         return $this->dateInscription;
     }
@@ -139,7 +143,7 @@ class PatientDTO
      *
      * @return  self
      */ 
-    public function setDateInscription(?DateTimeInterface $dateInscription):self
+    public function setDateInscription(?string $dateInscription):self
     {
         $this->dateInscription = $dateInscription;
 
@@ -209,7 +213,7 @@ class PatientDTO
     /**
      * Get the value of dateNaissance
      */ 
-    public function getDateNaissance():?\DateTimeInterface
+    public function getDateNaissance():?string
     {
         return $this->dateNaissance;
     }
@@ -219,7 +223,7 @@ class PatientDTO
      *
      * @return  self
      */ 
-    public function setDateNaissance(?\DateTimeInterface $dateNaissance):self
+    public function setDateNaissance(?string $dateNaissance):self
     {
         $this->dateNaissance = $dateNaissance;
 

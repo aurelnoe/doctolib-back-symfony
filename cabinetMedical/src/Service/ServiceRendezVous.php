@@ -84,4 +84,22 @@ class ServiceRendezVous
             throw new RendezVousServiceException("Un problème est technique est servenu. Veuilllez réessayer ultérieurement.", $e->getCode());
         }
     }
+
+    public function searchRdvByIdPatient(int $idPatient) {
+        try {
+            $rendezVous = $this->repository->findByPatient($idPatient);
+            return $this->rendezVousMapper->transformeRendezVousEntityToRendezVousDto($rendezVous);
+        } catch(DriverException $e){
+            throw new RendezVousServiceException("Un problème est technique est servenu. Veuilllez réessayer ultérieurement.", $e->getCode());
+        }
+    }
+
+    public function searchRdvByIdPraticien(int $idPraticien) {
+        try {
+            $rendezVous = $this->repository->findByPraticien($idPraticien);
+            return $this->rendezVousMapper->transformeRendezVousEntityToRendezVousDto($rendezVous);
+        } catch(DriverException $e){
+            throw new RendezVousServiceException("Un problème est technique est servenu. Veuilllez réessayer ultérieurement.", $e->getCode());
+        }
+    }
 }

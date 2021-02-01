@@ -46,7 +46,7 @@ class ServicePraticien
     public function delete(Praticien $praticien, PraticienDTO $praticienDTO)
     {
         try {
-            $praticien = $this->praticienRepository->find($praticienDTO->getAdresse()->getId());
+            $praticien = $this->praticienRepository->find($praticienDTO->getId());
             $this->entityManager->remove($praticien);
             $this->entityManager->flush();
         } 
@@ -57,8 +57,6 @@ class ServicePraticien
 
     public function persist(?Praticien $praticien,PraticienDTO $praticienDto){
         try {
-            $praticien->setDateInscription(new \DateTime(date('Y-m-d')));
-            
             $adresse = $this->adresseRepository->find($praticienDto->getAdresse()->getId());
             $praticien = $this->praticienMapper->transformePraticienDtoToPraticienEntity($praticienDto,$praticien,$adresse);
             $this->entityManager->persist($praticien);
