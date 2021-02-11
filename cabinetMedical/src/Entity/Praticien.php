@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use App\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PraticienRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PraticienRepository::class)
@@ -40,12 +40,6 @@ class Praticien extends User
         parent::__construct();
         $this->rendezVous = new ArrayCollection();
         $this->suivres = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return
-        $this->specialite;
     }
 
     public function getSpecialite(): ?string

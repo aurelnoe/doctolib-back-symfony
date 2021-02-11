@@ -54,14 +54,6 @@ class Adresse
         $this->praticien = new ArrayCollection();
     }
 
-    public function __toString():string
-    {
-        return
-        $this->libelleVoie .
-        $this->ville .
-        $this->pays;
-    }
-
     public function getId(): ?int
     {
         return $this->id;

@@ -26,6 +26,7 @@ class PatientMapper {
         $patient->setEmail($patientDto->getEmail());
         $patient->setTelephone($patientDto->getTelephone());
         $patient->setPassword($hash);
+        //$patient->setRole($patientDto->getRole());
         $patient->setDateNaissance(new \DateTime($patientDto->getDateNaissance()));
         return $patient;
     }
@@ -39,6 +40,7 @@ class PatientMapper {
         $patientDto->setDateInscription($patient->getDateInscription()->format('Y-m-d'));
         $patientDto->setEmail($patient->getEmail());
         $patientDto->setTelephone($patient->getTelephone());
+        $patientDto->setRole("patient");
         //$patientDto->setPassword($patient->getPassword());
         $patientDto->setDateNaissance($patient->getDateNaissance()->format('Y-m-d'));
         return $patientDto;

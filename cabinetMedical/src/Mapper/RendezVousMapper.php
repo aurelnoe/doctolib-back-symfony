@@ -21,7 +21,9 @@ class RendezVousMapper {
     }
 
     public function transformeRendezVousDTOToRendezVousEntity(RendezVousDTO $rendezVousDto, RendezVous $rendezVous,Praticien $praticien, Patient $patient){
-        $rendezVous->setDateHeure(new \DateTime($rendezVousDto->getDateHeure()));
+        $rendezVous->setDateDebut(new \DateTime($rendezVousDto->getDateDebut()));
+        $rendezVous->setDateFin(new \DateTime($rendezVousDto->getDateFin()));
+        $rendezVous->setMotif($rendezVousDto->getMotif());
         $rendezVous->setPatient($patient);
         $rendezVous->setPraticien($praticien);
         return $rendezVous;
@@ -30,7 +32,9 @@ class RendezVousMapper {
     public function transformeRendezVousEntityToRendezVousDTO(RendezVous $rendezVous){
         $rendezVousDto = new RendezVousDTO();
         $rendezVousDto->setId($rendezVous->getId());
-        $rendezVousDto->setDateHeure($rendezVous->getDateHeure()->format('Y-m-d H:i'));
+        $rendezVousDto->setDateDebut($rendezVous->getDateDebut()->format('Y-m-d H:i'));
+        $rendezVousDto->setDateFin($rendezVous->getDateFin()->format('Y-m-d H:i'));
+        $rendezVousDto->setMotif($rendezVous->getMotif());
         $rendezVousDto->setPatient($this->patientMapper->transformePatientEntityToPatientDto($rendezVous->getPatient()));
         $rendezVousDto->setPraticien($this->praticienMapper->transformePraticienEntityToPraticienDto($rendezVous->getPraticien()));
         return $rendezVousDto;

@@ -15,6 +15,7 @@ use App\Repository\PatientRepository;
  */
 class Patient extends User
 {
+
     /**
      * @ORM\Column(type="date")
      */
@@ -37,13 +38,6 @@ class Patient extends User
         $this->suivres = new ArrayCollection();
     }
 
-    public function __toString()
-    {
-        return
-        $this->dateNaissance;
-    }
-
-
     public function getDateNaissance(): ?\DateTimeInterface
     {   
         return $this->dateNaissance;
@@ -52,18 +46,6 @@ class Patient extends User
     public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

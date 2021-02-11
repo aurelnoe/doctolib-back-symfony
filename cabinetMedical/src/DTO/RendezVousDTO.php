@@ -27,7 +27,24 @@ class RendezVousDTO
      *
      * @var string
      */
-    private $dateHeure;
+    private $dateDebut;
+
+    /**
+     * @OA\Property(
+     *      type="string",
+     *      format="datetime"
+     * )
+     *
+     * @var string
+     */
+    private $dateFin;
+
+    /**
+     * @OA\Property(type="string")
+     *
+     * @var string
+     */
+    private $motif;
 
     /**
      * @OA\Property(type="object")
@@ -64,21 +81,21 @@ class RendezVousDTO
     }
 
     /**
-     * Get the value of dateHeure
+     * Get the value of dateDebut
      */ 
-    public function getDateHeure():?string
+    public function getDateDebut():?string
     {
-        return $this->dateHeure;
+        return $this->dateDebut;
     }
 
     /**
-     * Set the value of dateHeure
+     * Set the value of dateDebut
      *
      * @return  self
      */ 
-    public function setDateHeure(?string $dateHeure):self
+    public function setDateDebut(?string $dateDebut):self
     {
-        $this->dateHeure = $dateHeure;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
@@ -119,6 +136,54 @@ class RendezVousDTO
     public function setPraticien(?PraticienDTO $praticien):self
     {
         $this->praticien = $praticien;
+
+        return $this;
+    }
+
+    /**
+     * Get )
+     *
+     * @return  string
+     */ 
+    public function getDateFin():?string
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * Set )
+     *
+     * @param  string  $dateFin  )
+     *
+     * @return  self
+     */ 
+    public function setDateFin(?string $dateFin):self
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of motif
+     *
+     * @return  string
+     */ 
+    public function getMotif():?string
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set the value of motif
+     *
+     * @param  string  $motif
+     *
+     * @return  self
+     */ 
+    public function setMotif(?string $motif):self
+    {
+        $this->motif = $motif;
 
         return $this;
     }

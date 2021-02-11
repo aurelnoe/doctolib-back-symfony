@@ -71,6 +71,13 @@ class PraticienDTO
     private $specialite;
 
     /**
+     * @OA\Property(type="string")
+     *
+     * @var string
+     */
+    private $role;
+
+    /**
      * @OA\Property(type="object")
      *
      * @var AdresseDTO
@@ -258,15 +265,40 @@ class PraticienDTO
         return $this;
     }
 
-    public function __toString()
+    // public function __toString()
+    // {
+    //     return
+    //     $this->id .
+    //     $this->nom .
+    //     $this->prenom .
+    //     $this->dateInscription .
+    //     $this->email .
+    //     $this->password .
+    //     $this->role .
+    //     $this->specialite;
+    // }
+
+    /**
+     * Get the value of role
+     *
+     * @return  string
+     */ 
+    public function getRole(): ?string
     {
-        return
-        $this->id .
-        $this->nom .
-        $this->prenom .
-        $this->dateInscription .
-        $this->email .
-        $this->password .
-        $this->specialite;
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @param  string  $role
+     *
+     * @return  self
+     */ 
+    public function setRole(?string $role):self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }

@@ -71,6 +71,13 @@ class PatientDTO
     private $dateNaissance;
 
     /**
+     * @OA\Property(type="string")
+     *
+     * @var string
+     */
+    private $role;
+
+    /**
      * Get the value of id
      */ 
     public function getId():?int
@@ -230,15 +237,40 @@ class PatientDTO
         return $this;
     }
 
-    public function __toString()
+    // public function __toString()
+    // {
+    //     return
+    //     $this->id .
+    //     $this->nom .
+    //     $this->prenom .
+    //     $this->dateInscription .
+    //     $this->email .
+    //     $this->password .
+    //     $this->role .
+    //     $this->dateNaissance;
+    // }
+
+    /**
+     * Get the value of role
+     *
+     * @return  string
+     */ 
+    public function getRole():?string 
     {
-        return
-        $this->id .
-        $this->nom .
-        $this->prenom .
-        $this->dateInscription .
-        $this->email .
-        $this->password .
-        $this->dateNaissance;
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @param  string  $role
+     *
+     * @return  self
+     */ 
+    public function setRole(string $role):self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }

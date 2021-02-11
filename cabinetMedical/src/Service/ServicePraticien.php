@@ -81,9 +81,7 @@ class ServicePraticien
     {
         try {
             $praticiens = $this->praticienRepository->findPraticiensByVille($ville);
-            // foreach ($variable as $key => $value) {
-            //     # code...
-            // }
+            
             $praticienDTOs = [];
             //dd($praticiens);
             foreach ($praticiens as $praticien) {

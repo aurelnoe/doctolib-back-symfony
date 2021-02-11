@@ -30,6 +30,7 @@ class PraticienMapper
         $praticien->setTelephone($praticienDto->getTelephone());
         $praticien->setPassword($hash);
         $praticien->setSpecialite($praticienDto->getSpecialite());
+        //$praticien->setRole($praticienDto->getRole());
         $praticien->setAdresse($adresse);
         return $praticien;
     }
@@ -45,6 +46,7 @@ class PraticienMapper
         $praticienDto->setTelephone($praticien->getTelephone());
         // $praticienDto->setPassword($praticien->getPassword()); PAS DE MDP DANS DAO !!
         $praticienDto->setSpecialite($praticien->getSpecialite());
+        $praticienDto->setRole("praticien");
         $praticienDto->setAdresse($this->adresseMapper->transformeAdresseEntityToAdresseDTO($praticien->getAdresse()));
         return $praticienDto;
     }

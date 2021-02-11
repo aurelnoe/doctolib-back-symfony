@@ -3,19 +3,27 @@
 namespace App\Entity;
 
 use DateTime;
+//use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\MappedSuperclass;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+//use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @ORM\Entity()
+ * @InheritanceType("JOINED")
+ * @DiscriminatorColumn(name="role", type="string")
+ * @DiscriminatorMap({"patient" = "Patient", "praticien" = "Praticien"})
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  * 
- * @MappedSuperclass
  */
-class User implements UserInterface
+abstract class User implements UserInterface //@MappedSuperclass
 {
     /**
      * @ORM\Id
@@ -72,16 +80,14 @@ class User implements UserInterface
     private $telephone;
 
     /**
+     * @ORM\Column(type="json")
+     */
+    private $roles;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
-    public function __toString()
-    {
-        return
-        $this->nom .
-        $this->prenom;
-    }
 
     public function __construct()
     {

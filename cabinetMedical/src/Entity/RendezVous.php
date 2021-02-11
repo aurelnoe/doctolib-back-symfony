@@ -22,7 +22,17 @@ class RendezVous
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateHeure;
+    private $dateDebut;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateFin;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $motif;
 
     /**
      * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="rendezVous")
@@ -39,14 +49,54 @@ class RendezVous
         return $this->id;
     }
 
-    public function getDateHeure(): ?\DateTimeInterface
+    public function getDateDebut(): ?\DateTimeInterface
     {
-        return $this->dateHeure;
+        return $this->dateDebut;
     }
 
-    public function setDateHeure(?\DateTimeInterface $dateHeure): self
+    public function setDateDebut(?\DateTimeInterface $dateDebut): self
     {
-        $this->dateHeure = $dateHeure;
+        $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateFin
+     */ 
+    public function getDateFin(): ?\DateTimeInterface
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * Set the value of dateFin
+     *
+     * @return  self
+     */ 
+    public function setDateFin(?\DateTimeInterface $dateFin): self
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of motif
+     */ 
+    public function getMotif():?string
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set the value of motif
+     *
+     * @return  self
+     */ 
+    public function setMotif(?string $motif):self
+    {
+        $this->motif = $motif;
 
         return $this;
     }

@@ -2,10 +2,10 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-            cost: 12
+            # cost: 12
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        #users_in_memory: { memory: null }
+        # users_in_memory: { memory: null }
         chain_provider:
             chain:
                 providers: [app_patient_provider, app_praticien_provider]
@@ -21,16 +21,40 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            anonymous: lazy
+        login:
+            provider: chain_provider
+            pattern: ^/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path: /login_check
+                # username_path: username
+                # password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            pattern: ^/
+            stateless: true
+            anonymous: true
             provider: chain_provider
             guard:
                 authenticators:
-                    - App\Security\Authenticator
-            logout:
-                path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        main:
+            anonymous: lazy
+            provider: chain_provider
+            # guard:
+            #    authenticators:
+            #         - App\Security\TokenAuthenticator
+            # logout:
+            #     path: app_logout  
+            #     target: /main
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -43,3 +67,8 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/patients, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/adresses, roles: IS_AUTHENTICATED_ANONYMOUSLY }
