@@ -107,4 +107,23 @@ class Patient extends User
 
         return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRole():? string
+    {
+        $role = $this->role;
+        // guarantee every user at least has ROLE_USER
+        $role = 'patient';
+
+        return $role;
+    }
+
+    public function setRole(?string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 }

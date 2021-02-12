@@ -96,4 +96,17 @@ class ServicePraticien
             throw new PraticienServiceException($e->getMessage(), $e->getCode());
         }
     }
+
+    public function findPraticienByAdresse(int $idAdresse) {
+        try {
+            $praticiens = $this->praticienRepository->findBy(['adresse'=> $idAdresse]);
+            $praticienDTOs = [];
+            foreach ($praticiens as $praticien) {
+                $praticienDTOs[] = $this->praticienMapper->transformePraticienEntityToPraticienDto($praticien);
+            }
+            return $praticienDTOs;
+        } catch(DriverException $e){
+            throw new PraticienServiceException("Un problème est technique est servenu. Veuilllez réessayer ultérieurement.", $e->getCode());
+        }
+    }
 }

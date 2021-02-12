@@ -50,7 +50,7 @@ class PraticienDTO
     private $email;
 
     /**
-     * @OA\Property(type="integer")
+     * @OA\Property(type="string")
      *
      * @var int
      */
@@ -188,7 +188,7 @@ class PraticienDTO
     /**
      * Get the value of telephone
      */ 
-    public function getTelephone():?int
+    public function getTelephone():?string
     {
         return $this->telephone;
     }
@@ -198,7 +198,7 @@ class PraticienDTO
      *
      * @return  self
      */ 
-    public function setTelephone(?int $telephone):self
+    public function setTelephone(?string $telephone):self
     {
         $this->telephone = $telephone;
 

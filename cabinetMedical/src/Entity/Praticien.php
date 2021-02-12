@@ -137,4 +137,28 @@ class Praticien extends User
 
         return $this;
     }
+
+    // /**
+    //  * Get the value of role
+    //  *
+    //  * @return  string
+    //  */ 
+    // public function getRole():?string 
+    // {
+    //     return $this->role;
+    // }
+
+    // /**
+    //  * Set the value of role
+    //  *
+    //  * @param  string  $role
+    //  *
+    //  * @return  self
+    //  */ 
+    // public function setRole(string $role):self
+    // {
+    //     $this->role = $role;
+
+    //     return $this;
+    // }
 }

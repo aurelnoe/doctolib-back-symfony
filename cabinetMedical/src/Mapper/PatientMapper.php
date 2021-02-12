@@ -26,7 +26,7 @@ class PatientMapper {
         $patient->setEmail($patientDto->getEmail());
         $patient->setTelephone($patientDto->getTelephone());
         $patient->setPassword($hash);
-        //$patient->setRole($patientDto->getRole());
+        $patient->setRole($patientDto->getRole());
         $patient->setDateNaissance(new \DateTime($patientDto->getDateNaissance()));
         return $patient;
     }

@@ -48,7 +48,7 @@ class PatientDTO
     private $email;
 
     /**
-     * @OA\Property(type="integer")
+     * @OA\Property(type="string")
      *
      * @var int
      */
@@ -180,7 +180,7 @@ class PatientDTO
     /**
      * Get the value of telephone
      */ 
-    public function getTelephone():?int
+    public function getTelephone():?string
     {
         return $this->telephone;
     }
@@ -190,7 +190,7 @@ class PatientDTO
      *
      * @return  self
      */ 
-    public function setTelephone(?int $telephone):self
+    public function setTelephone(?string $telephone):self
     {
         $this->telephone = $telephone;
 
@@ -254,20 +254,17 @@ class PatientDTO
      * Get the value of role
      *
      * @return  string
-     */ 
-    public function getRole():?string 
+     */
+    public function getRole():? string
     {
-        return $this->role;
+        $role = $this->role;
+
+        $role = 'patient';
+
+        return $role;
     }
 
-    /**
-     * Set the value of role
-     *
-     * @param  string  $role
-     *
-     * @return  self
-     */ 
-    public function setRole(string $role):self
+    public function setRole(?string $role): self
     {
         $this->role = $role;
 

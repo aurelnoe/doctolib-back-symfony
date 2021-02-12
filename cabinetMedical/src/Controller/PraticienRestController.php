@@ -71,14 +71,20 @@ class PraticienRestController extends AbstractFOSRestController
      * 
      * @QueryParam(name="ville", requirements="[a-zA-Z]+", description="Ville")
      * @param string $ville
+     * @QueryParam(name="adresse", requirements="[a-zA-Z]+", description="Adresse")
+     * @param int $adresse
      * @Get(PraticienRestController::URI_PRATICIEN_COLLECTION)
      */
-    public function searchAll($ville=null)
+    public function searchAll($ville=null,$adresse=null)
     {
         try {
             if ($ville) {
                 $praticiens = $this->praticienService->findPraticiensByVille($ville); 
-            }else {
+            } 
+            else if($adresse){
+                $praticiens = $this->praticienService->findPraticienByAdresse($adresse);
+            }
+            else {
                 $praticiens = $this->praticienService->searchAll();
             }
         } catch(PraticienServiceException $e){

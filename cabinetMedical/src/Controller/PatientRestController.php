@@ -128,6 +128,7 @@ class PatientRestController extends AbstractFOSRestController
      */
     public function create(PatientDTO $patientDto){
         try {
+            //var_dump($patientDto);
             $this->patientService->persist(new Patient(),$patientDto);
             return View::create([], Response::HTTP_CREATED, ["Content-type" => "application/json"]);
         } catch (PatientServiceException $e){

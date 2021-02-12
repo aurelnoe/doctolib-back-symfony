@@ -36,8 +36,26 @@ class PraticienRepository extends ServiceEntityRepository
         $this->em = $em;
     }
 
+    // public function findByAdresse(int $idAdresse)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->andWhere('p.adresse = :val')
+    //         ->setParameter('val', $idAdresse)
+    //         ->orderBy('p.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
     public function findPraticiensByVille(string $ville)
     {
+        $users = $this->em
+        ->createQuery("SELECT p FROM App\Entity\Praticien p JOIN p.adresse a WHERE a.ville = :ville")
+        ->setParameter('ville', $ville)
+        ->getResult();
+                    
+        return $users;
         //$praticiens = $this->manager->createQuery('SELECT p FROM App\DTO\PraticienDTO p')->getResult();
         //$adresses = $this->registry->createQuery('SELECT a FROM App\DTO\AdresseDTO a')->getResult();
         //$idAdresse = $this->adresseRepository->findOneBy($ville)->getId();
@@ -68,12 +86,6 @@ class PraticienRepository extends ServiceEntityRepository
         //         ->getResult()
         //     ;
         // }
-
-        
-        $users = $this->em->createQuery("SELECT p FROM App\Entity\Praticien p JOIN p.adresse a WHERE a.ville = :ville")->setParameter('ville', $ville)->getResult();
-                        
-
-        return $users;
 
         // try{
         //     $adresse = $this->adresseRepository->findOneBy(["ville" => $ville]);

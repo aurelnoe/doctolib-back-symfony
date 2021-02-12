@@ -70,5 +70,6 @@ security:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/patients, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/patients, roles: IS_AUTHENTICATED_AUTHENTIFIED }
         - { path: ^/adresses, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, roles: IS_AUTHENTICATED_ANONYMOUSLY }

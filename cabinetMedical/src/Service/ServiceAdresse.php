@@ -65,7 +65,7 @@ class ServiceAdresse
     public function searchById(int $id)
     {
         try {
-            $adresse = $this->repository->find($id);
+            $adresse = $this->adresseRepository->find($id);
             return $this->adresseMapper->transformeAdresseEntityToAdresseDto($adresse);
         } catch(DriverException $e){
             throw new AdresseServiceException("Un problème est technique est servenu. Veuilllez réessayer ultérieurement.", $e->getCode());
